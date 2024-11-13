@@ -29,10 +29,10 @@ class LeftDrawer extends StatelessWidget {
                 Text(
                   "Ayo jaga kesehatan mentalmu setiap hari disini!",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style:  TextStyle(
                     fontSize: 15,
-                    color: Colors.white,
                     fontWeight: FontWeight.normal,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -44,10 +44,10 @@ class LeftDrawer extends StatelessWidget {
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyHomePage(),
-                ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ));
             },
           ),
           ListTile(
@@ -55,7 +55,7 @@ class LeftDrawer extends StatelessWidget {
             title: const Text('Tambah Mood'),
             // Bagian redirection ke MoodEntryFormPage
             onTap: () {
-            Navigator.pushReplacement(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const MoodEntryFormPage(),

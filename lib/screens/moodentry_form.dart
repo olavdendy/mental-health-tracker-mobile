@@ -11,11 +11,12 @@ class MoodEntryFormPage extends StatefulWidget {
 class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _mood = "";
-	String _feelings = "";
-	int _moodIntensity = 0;
+  String _feelings = "";
+  int _moodIntensity = 0;
+
   @override
   Widget build(BuildContext context) {
-    Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Center(
           child: Text(
@@ -30,68 +31,93 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Mood",
+                    labelText: "Mood",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _mood = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Mood tidak boleh kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Feelings",
+                    labelText: "Feelings",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _feelings = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Feelings tidak boleh kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Mood intensity",
+                    labelText: "Mood intensity",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _moodIntensity = int.tryParse(value!) ?? 0;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Mood intensity tidak boleh kosong!";
+                    }
+                    if (int.tryParse(value) == null) {
+                      return "Mood intensity harus berupa angka!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Mood",
-                      labelText: "Mood",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).colorScheme.primary,
                       ),
                     ),
-                    onChanged: (String? value) {
-                      setState(() {
-                        _mood = value!;
-                      });
-                    },
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return "Mood tidak boleh kosong!";
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Mood intensity",
-                      labelText: "Mood intensity",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                    ),
-                    onChanged: (String? value) {
-                      setState(() {
-                        _moodIntensity = int.tryParse(value!) ?? 0;
-                      });
-                    },
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return "Mood intensity tidak boleh kosong!";
-                      }
-                      if (int.tryParse(value) == null) {
-                        return "Mood intensity harus berupa angka!";
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                            Theme.of(context).colorScheme.primary),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {showDialog(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
@@ -101,6 +127,7 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Mood: $_mood'),
+                                    Text('Feelings: $_feelings'),
                                     Text('Mood Intensity: $_moodIntensity'),
                                   ],
                                 ),
@@ -127,11 +154,9 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                 ),
               ),
             ],
-          )
+          ),
         ),
       ),
     );
-    return Placeholder();
   }
 }
-
