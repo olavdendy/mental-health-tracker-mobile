@@ -57,9 +57,10 @@ class LeftDrawer extends StatelessWidget {
                     builder: (context) => MoodEntryFormPage(),
                   ));
             },
-          ),ListTile(
+          ),
+          ListTile(
         leading: const Icon(Icons.add_reaction_rounded),
-        title: const Text('Daftar Mood'),
+        title: const Text('Daftar Product'),
         onTap: () {
             // Route menu ke halaman mood
             Navigator.push(

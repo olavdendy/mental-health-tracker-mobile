@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mental_health_tracker/screens/menu.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-// TODO: Impor drawer yang sudah dibuat sebelumnya
 
 class MoodEntryFormPage extends StatefulWidget {
   const MoodEntryFormPage({super.key});
